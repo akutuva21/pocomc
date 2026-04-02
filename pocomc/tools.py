@@ -173,15 +173,8 @@ def systematic_resample(size: np.ndarray,
         weights = np.array(weights) / np.sum(weights)
 
     positions = (np.random.random() + np.arange(size)) / size
-
-    j = 0
-    cumulative_sum = weights[0]
-    indeces = np.empty(size, dtype=int)
-    for i in range(size):
-        while positions[i] > cumulative_sum:
-            j += 1
-            cumulative_sum += weights[j]
-        indeces[i] = j
+    cumulative_sum = np.cumsum(weights)
+    indeces = np.searchsorted(cumulative_sum, positions)
     
     return indeces
 
