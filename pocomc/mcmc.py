@@ -1,7 +1,6 @@
 import numpy as np
 import torch
 
-from .tools import numpy_to_torch, torch_to_numpy
 from .student import fit_mvstud
 
 @torch.no_grad()
